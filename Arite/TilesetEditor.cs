@@ -72,6 +72,8 @@ public class TilesetEditor : EditorWindow
 
                 ImGui.Separator();
 
+                string oldImagePath = tileset.ImagePath;
+
                 ImGui.Text("Image Path");
                 ImGui.SameLine();
                 if (ImGui.Button("Browse"))
@@ -84,6 +86,11 @@ public class TilesetEditor : EditorWindow
                 }
                 ImGui.SameLine();
                 ImGui.InputText("##", ref tileset.ImagePath, 256);
+
+                if(tileset.ImagePath != oldImagePath)
+                {
+                    tileset.UnloadTexture();
+                }
 
                 ImGuiHelper.IntInput("Tile Width", ref tileset.TileWidth);
                 ImGuiHelper.IntInput("Tile Height", ref tileset.TileHeight);

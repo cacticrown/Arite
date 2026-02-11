@@ -38,4 +38,13 @@ public class Tileset
             Log.Error($"Failed to load tileset texture from path '{ImagePath}': {ex.Message}");
         }
     }
+
+    public void UnloadTexture()
+    {
+        if (texture != null)
+        {
+            texture.Dispose();
+            texture = null!;
+        }
+    }
 }
