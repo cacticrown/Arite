@@ -14,6 +14,7 @@ public class AriteEditor
     public static string Version => "0.1.0";
 
     public const string DefaultFontPath = "Assets/Fonts/Inter-VariableFont_opsz,wght.ttf";
+    public const string ProjectFileExtension = "ariteproj";
 
     public static SpriteBatch SpriteBatch => GameRoot.Instance.SpriteBatch;
 
@@ -175,16 +176,12 @@ public class AriteEditor
 
     public void NewProject()
     {
-        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave("Arite Project File", "ariteproj");
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave("Arite Project File", ProjectFileExtension);
         if (result.IsOk)
         {
             Project = new Project();
 
             string filePath = result.Path;
-            if (!filePath.EndsWith(".ariteproj", StringComparison.OrdinalIgnoreCase))
-            {
-                filePath += ".ariteproj";
-            }
 
             Project.Load(filePath);
 
@@ -198,7 +195,7 @@ public class AriteEditor
 
     public void OpenProject()
     {
-        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen("Arite Project File", "ariteproj");
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen("Arite Project File", ProjectFileExtension);
         if (result.IsOk)
         {
             string filePath = result.Path;
