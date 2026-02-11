@@ -4,7 +4,7 @@ using Hexa.NET.ImGui;
 using Arite.Style;
 using Arite.Style.Themes;
 using Arite.Graphics;
-using Hexa.NET.ImGui.Widgets.Dialogs;
+using Arite.Data;
 
 namespace Arite;
 
@@ -17,10 +17,9 @@ public class AriteEditor
 
     public static SpriteBatch SpriteBatch => GameRoot.Instance.SpriteBatch;
 
+    public Project Project { get; private set; } = null!;
+
     private ImGuiRenderer imguiRenderer = null!;
-    
-    private OpenFileDialog openFileDialog = new OpenFileDialog();
-    private SaveFileDialog saveFileDialog = new SaveFileDialog();
 
     public AriteEditor()
     {
@@ -86,9 +85,6 @@ public class AriteEditor
         ImGui.DockSpace(dockspaceId, System.Numerics.Vector2.Zero, dockspaceFlags);
 
         ImGui.ShowDebugLogWindow();
-        
-        openFileDialog.Draw(ImGuiWindowFlags.None);
-        saveFileDialog.Draw(ImGuiWindowFlags.None);
 
         ImGui.End();
 
@@ -103,15 +99,15 @@ public class AriteEditor
             {
                 if (ImGui.MenuItem("New"))
                 {
-                    saveFileDialog.Show();
+                    NewProject();
                 }
                 if (ImGui.MenuItem("Open"))
                 {
-                    openFileDialog.Show();
+                    OpenProject();
                 }
                 if (ImGui.MenuItem("Save"))
                 {
-                    saveFileDialog.Show();
+                    SaveProject();
                 }
                 ImGui.Separator();
                 if (ImGui.MenuItem("Exit"))
@@ -174,6 +170,42 @@ public class AriteEditor
             }
 
             ImGui.EndMainMenuBar();
+        }
+    }
+
+    public void NewProject()
+    {
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave();
+        if (result.IsOk)
+        {
+            Project = new Project();
+
+            string filePath = result.Path; 
+            Project.Load(filePath);
+
+            SaveProject();
+        }
+        else
+        {
+            Log.Warning("New project creation failed or was canceled.");
+        }
+    }
+
+    public void OpenProject()
+    {
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen();
+        if (result.IsOk)
+        {
+            string filePath = result.Path;
+            Project.Load(filePath);
+        }
+    }
+
+    public void SaveProject()
+    {
+        if(Project != null)
+        {
+            Project.Save();
         }
     }
 }
