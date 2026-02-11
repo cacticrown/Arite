@@ -176,14 +176,18 @@ public class AriteEditor
 
     public void NewProject()
     {
-        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave("Arite Project File", ProjectFileExtension);
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave(ProjectFileExtension);
         if (result.IsOk)
         {
             Project = new Project();
-
             string filePath = result.Path;
 
-            Project.Load(filePath);
+            if (!Path.HasExtension(filePath))
+            {
+                filePath = Path.ChangeExtension(filePath, ProjectFileExtension);
+            }
+
+            Project.Path = filePath;
 
             SaveProject();
         }
@@ -195,9 +199,14 @@ public class AriteEditor
 
     public void OpenProject()
     {
-        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen("Arite Project File", ProjectFileExtension);
+        NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen(ProjectFileExtension);
         if (result.IsOk)
         {
+            if(Project is null)
+            {
+                Project = new Project();
+            }
+
             string filePath = result.Path;
             Project.Load(filePath);
         }
