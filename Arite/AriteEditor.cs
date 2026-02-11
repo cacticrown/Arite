@@ -43,13 +43,19 @@ public class AriteEditor
             io.FontDefault = io.Fonts.AddFontFromFileTTF(DefaultFontPath, 16);
         }
 
-        Theme.Apply(new DefaultDarkTheme());
-
         EditorWindows.Add(new TilesetEditor());
 
         foreach(var editorWindow in EditorWindows)
         {
             editorWindow.Load();
+        }
+
+        Settings.Load();
+        if(Settings.RecentProjects.Count > 0)
+        {
+            string recentProject = Settings.RecentProjects[0];
+            Project = new Project();
+            Project.Load(recentProject);
         }
     }
 
@@ -73,6 +79,11 @@ public class AriteEditor
             {
                 editorWindow.Update(gameTime);
             }
+        }
+
+        if(Project != null)
+        {
+            GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
         }
     }
 
@@ -126,6 +137,22 @@ public class AriteEditor
                 if (ImGui.MenuItem("Open"))
                 {
                     OpenProject();
+                }
+                if (ImGui.BeginMenu("Open Recent"))
+                {
+                    foreach(string recentProject in Settings.RecentProjects)
+                    {
+                        if(ImGui.MenuItem(recentProject))
+                        {
+                            if(Project is null)
+                            {
+                                Project = new Project();
+                            }
+                            Project.Load(recentProject);
+                            break;
+                        }
+                    }
+                    ImGui.EndMenu();
                 }
                 if (ImGui.MenuItem("Save"))
                 {
@@ -239,5 +266,11 @@ public class AriteEditor
         {
             Project.Save();
         }
+    }
+
+    public void OnExit()
+    {
+        SaveProject();
+        Settings.Save();
     }
 }

@@ -9,5 +9,7 @@ namespace Arite.Style;
 
 public interface ITheme
 {
+    string Name { get; }
+    
     ThemeData GetThemeData();
 }

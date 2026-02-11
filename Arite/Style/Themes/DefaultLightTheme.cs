@@ -4,6 +4,8 @@ namespace Arite.Style.Themes;
 
 public struct DefaultLightTheme : ITheme
 {
+    public string Name => "DefaultLightTheme";
+
     public ThemeData GetThemeData() => new()
     {
         Colors = new ThemeColors

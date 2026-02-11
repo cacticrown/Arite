@@ -79,7 +79,7 @@ public class TilesetEditor : EditorWindow
                     NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen(".png,.jpg,.jpeg,.bmp");
                     if (result.IsOk)
                     {
-                        tileset.ImagePath = Path.GetRelativePath(AriteEditor.Instance.Project.Path, result.Path);
+                        tileset.ImagePath = Path.GetRelativePath(AriteEditor.Instance.Project.Directory, result.Path);
                     }
                 }
                 ImGui.SameLine();
@@ -91,7 +91,8 @@ public class TilesetEditor : EditorWindow
                 ImGuiHelper.IntInput("Tile Separation Y", ref tileset.TileSeperationY);
 				
 				ImGui.Text("Image Preview:");
-				if(tileset.Texture != null)
+                var texture2D = tileset.Texture;
+				if(texture2D != null)
 				{
 					var texture = AriteEditor.Instance.ImguiRenderer.BindTexture(tileset.Texture);
 					ImGui.Image(texture, new System.Numerics.Vector2(tileset.Texture.Width, tileset.Texture.Height));

@@ -26,6 +26,8 @@ public static class Theme
         ThemeData data = theme.GetThemeData();
         ApplyColors(data.Colors);
         ApplyMetrics(data.Metrics);
+
+        Log.Info($"Applied theme: {theme.Name}");
     }
 
     private static void ApplyColors(ThemeColors colors)

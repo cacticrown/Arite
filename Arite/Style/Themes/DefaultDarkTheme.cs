@@ -4,6 +4,8 @@ namespace Arite.Style.Themes;
 
 public sealed class DefaultDarkTheme : ITheme
 {
+    public string Name => "DefaultDarkTheme";
+
     public ThemeData GetThemeData() => new()
     {
         Colors = new ThemeColors

@@ -17,7 +17,7 @@ public class Tileset
     {
         get
         {
-            if (texture == null && File.Exists(ImagePath))
+            if (texture == null && File.Exists(Path.Combine(AriteEditor.Instance.Project.Directory, ImagePath)))
             {
                 LoadTexture();    
             }
@@ -30,7 +30,7 @@ public class Tileset
     {
         try
         {
-            using FileStream fileStream = new FileStream(ImagePath, FileMode.Open, FileAccess.Read);
+            using FileStream fileStream = new FileStream(Path.Combine(AriteEditor.Instance.Project.Directory, ImagePath), FileMode.Open, FileAccess.Read);
             texture = Texture2D.FromStream(AriteEditor.SpriteBatch.GraphicsDevice, fileStream);
         }
         catch (Exception ex)

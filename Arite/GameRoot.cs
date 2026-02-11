@@ -46,4 +46,9 @@ public class GameRoot : Game
 
         base.Draw(gameTime);
     }
+
+    protected override void OnExiting(object sender, ExitingEventArgs args)
+    {
+        Editor.OnExit();
+    }
 }
