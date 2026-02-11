@@ -20,7 +20,7 @@ public static class Theme
         {
             return;
         }
-
+        
         Current = theme;
 
         ThemeData data = theme.GetThemeData();

@@ -20,7 +20,9 @@ public class AriteEditor
 
     public Project Project { get; private set; } = null!;
 
-    private ImGuiRenderer imguiRenderer = null!;
+    public List<EditorWindow> EditorWindows = new List<EditorWindow>();
+
+    public ImGuiRenderer ImguiRenderer = null!;
 
     public AriteEditor()
     {
@@ -29,7 +31,7 @@ public class AriteEditor
 
     public void Load()
     {
-        imguiRenderer = new ImGuiRenderer(GameRoot.Instance);
+        ImguiRenderer = new ImGuiRenderer(GameRoot.Instance);
 
         var io = ImGui.GetIO();
         io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
@@ -42,6 +44,13 @@ public class AriteEditor
         }
 
         Theme.Apply(new DefaultDarkTheme());
+
+        EditorWindows.Add(new TilesetEditor());
+
+        foreach(var editorWindow in EditorWindows)
+        {
+            editorWindow.Load();
+        }
     }
 
     public void ToggleDefaultTheme()
@@ -58,12 +67,18 @@ public class AriteEditor
 
     public void Update(GameTime gameTime)
     {
-        
+        foreach(var editorWindow in EditorWindows)
+        {
+            if(editorWindow.Visible)
+            {
+                editorWindow.Update(gameTime);
+            }
+        }
     }
 
     public void Draw(GameTime gameTime)
     {
-        imguiRenderer.BeforeLayout(gameTime);
+        ImguiRenderer.BeforeLayout(gameTime);
 
         DrawMenuBar();
 
@@ -85,11 +100,17 @@ public class AriteEditor
         uint dockspaceId = ImGui.GetID("MyDockSpace");
         ImGui.DockSpace(dockspaceId, System.Numerics.Vector2.Zero, dockspaceFlags);
 
-        ImGui.ShowDebugLogWindow();
+        foreach(var editorWindow in EditorWindows)
+        {
+            if(editorWindow.Visible)
+            {
+                editorWindow.Draw(gameTime);
+            }
+        }
 
         ImGui.End();
 
-        imguiRenderer.AfterLayout();
+        ImguiRenderer.AfterLayout();
     }
 
     public void DrawMenuBar()
