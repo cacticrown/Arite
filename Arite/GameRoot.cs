@@ -40,7 +40,7 @@ public class GameRoot : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.DarkGray);
 
         Editor.Draw(gameTime);
 
