@@ -5,6 +5,7 @@
 // Licensed under the MIT license.
 // See LICENSE file in the project root for full license information.
 
+using Arite.Style.Themes;
 using Hexa.NET.ImGui;
 using static Hexa.NET.ImGui.ImGui;
 

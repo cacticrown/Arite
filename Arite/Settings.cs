@@ -27,6 +27,7 @@ public static class Settings
         if (!File.Exists(Path))
         {
             Log.Info($"Settings file not found at {Path}, using default settings.");
+            Theme.Apply(new DefaultLightTheme());
             return;
         }
 
@@ -46,6 +47,8 @@ public static class Settings
                     RecentProjects.Add(recentProjectElement.GetString() ?? string.Empty);
                 }
             }
+
+            Log.Info($"Applied settings from {Path}");
         }
         catch (Exception ex)
         {
@@ -91,7 +94,7 @@ public static class Settings
                 writer.Flush();
             }
 
-            Log.Info($"Saved project to {Path}");
+            Log.Info($"Saved settings to {Path}");
         }
         catch (Exception ex)
         {
