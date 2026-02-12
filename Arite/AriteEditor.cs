@@ -1,10 +1,11 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Hexa.NET.ImGui;
+using Arite.Data;
+using Arite.Graphics;
 using Arite.Style;
 using Arite.Style.Themes;
-using Arite.Graphics;
-using Arite.Data;
+using Hexa.NET.ImGui;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Arite;
 
@@ -159,6 +160,11 @@ public class AriteEditor
                     SaveProject();
                 }
                 ImGui.Separator();
+                if (ImGui.MenuItem("Restart"))
+                {
+                    Process.Start(Environment.ProcessPath);
+                    GameRoot.Instance.Exit();
+                }
                 if (ImGui.MenuItem("Exit"))
                 {
                     GameRoot.Instance.Exit();
