@@ -78,7 +78,7 @@ public class TilesetEditor : EditorWindow
                 ImGui.SameLine();
                 if (ImGui.Button("Browse"))
                 {
-                    NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen(".png,.jpg,.jpeg,.bmp");
+                    NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen("png,jpg,jpeg,bmp");
                     if (result.IsOk)
                     {
                         tileset.ImagePath = Path.GetRelativePath(AriteEditor.Instance.Project.Directory, result.Path);
