@@ -19,6 +19,9 @@ public class AriteEditor
 
     public static SpriteBatch SpriteBatch => GameRoot.Instance.SpriteBatch;
 
+    /// <summary>
+    /// Null means that no project is currently open
+    /// </summary>
     public Project Project { get; private set; } = null!;
 
     public ProjectEditor ProjectEditor = new ProjectEditor();
@@ -52,18 +55,6 @@ public class AriteEditor
             string recentProject = Settings.RecentProjects[0];
             Project = new Project();
             Project.Load(recentProject);
-        }
-    }
-
-    public void ToggleDefaultTheme()
-    {
-        if (Theme.Current is DefaultDarkTheme)
-        {
-            Theme.Apply(new DefaultLightTheme());
-        }
-        else
-        {
-            Theme.Apply(new DefaultDarkTheme());
         }
     }
 
