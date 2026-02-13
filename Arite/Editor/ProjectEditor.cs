@@ -10,6 +10,11 @@ public class ProjectEditor : EditorWindow
 
     public override void Draw(GameTime gameTime)
     {
+        if(AriteEditor.Instance.Project == null)
+        {
+            return;
+        }
+
         ImGui.Begin("Tabs", DefaultWindowFlags);
 
         float fullWidth = ImGui.GetContentRegionAvail().X;

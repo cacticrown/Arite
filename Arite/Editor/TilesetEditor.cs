@@ -13,12 +13,6 @@ public class TilesetEditor : EditorWindow
 
     public override void Draw(GameTime gameTime)
     {
-        if (AriteEditor.Instance.Project == null)
-        {
-            ImGui.Text("No project loaded.");
-            return;
-        }
-
         ImGui.Begin("Tilesets", DefaultWindowFlags);
 
         if (ImGui.Button("Add Tileset"))
