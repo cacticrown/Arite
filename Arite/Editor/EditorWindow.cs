@@ -1,7 +1,7 @@
 using Hexa.NET.ImGui;
 using Microsoft.Xna.Framework;
 
-namespace Arite;
+namespace Arite.Editor;
 
 public abstract class EditorWindow
 {

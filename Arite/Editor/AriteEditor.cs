@@ -1,5 +1,4 @@
 using Arite.Data;
-using Arite.Editor;
 using Arite.Graphics;
 using Arite.Style;
 using Arite.Style.Themes;
@@ -8,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace Arite;
+namespace Arite.Editor;
 
 public class AriteEditor
 {

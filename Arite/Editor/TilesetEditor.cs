@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Hexa.NET.ImGui;
 using Arite.Data;
 
-namespace Arite;
+namespace Arite.Editor;
 
 public class TilesetEditor : EditorWindow
 {
