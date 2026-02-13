@@ -40,12 +40,12 @@ public struct DefaultLightTheme : ITheme
             SliderGrabActive = new Vector4(0.37f, 0.69f, 1f, 1f),
 
             Button = new Vector4(0.86f, 0.86f, 0.86f, 1f),
-            ButtonHovered = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            ButtonActive = new Vector4(0.06f, 0.53f, 0.98f, 1f),
+            ButtonHovered = new Vector4(0.80f, 0.80f, 0.80f, 1f),
+            ButtonActive = new Vector4(0.80f, 0.80f, 0.80f, 1f),
 
-            Header = new Vector4(0.86f, 0.86f, 0.86f, 1f),
-            HeaderHovered = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            HeaderActive = new Vector4(0.06f, 0.53f, 0.98f, 1f),
+            Header = new Vector4(0.90f, 0.90f, 0.90f, 1f),
+            HeaderHovered = new Vector4(0.80f, 0.80f, 0.80f, 1f),
+            HeaderActive = new Vector4(0.70f, 0.70f, 0.70f, 1f),
 
             Separator = new Vector4(0.70f, 0.70f, 0.70f, 1f),
             SeparatorHovered = new Vector4(0.57f, 0.57f, 0.57f, 1f),

@@ -35,36 +35,42 @@ public sealed class DefaultDarkTheme : ITheme
             ScrollbarGrabHovered = new Vector4(0.41f, 0.41f, 0.42f, 1f),
             ScrollbarGrabActive = new Vector4(0.51f, 0.51f, 0.52f, 1f),
 
-            CheckMark = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            SliderGrab = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            SliderGrabActive = new Vector4(0.37f, 0.69f, 1f, 1f),
+            CheckMark = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            SliderGrab = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            SliderGrabActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            Button = new Vector4(0.20f, 0.20f, 0.21f, 1f),
-            ButtonHovered = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            ButtonActive = new Vector4(0.06f, 0.53f, 0.98f, 1f),
+            // --- Muted Blue Accent for Buttons ---
+            Button = new Vector4(0.18f, 0.18f, 0.19f, 1f),
+            ButtonHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            ButtonActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            Header = new Vector4(0.20f, 0.20f, 0.21f, 1f),
-            HeaderHovered = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            HeaderActive = new Vector4(0.06f, 0.53f, 0.98f, 1f),
+            // --- Muted Blue Accent for Selectable / Header ---
+            Header = new Vector4(0.16f, 0.28f, 0.42f, 1f),
+            HeaderHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            HeaderActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            Separator = new Vector4(0.28f, 0.28f, 0.28f, 1f),
-            SeparatorHovered = new Vector4(0.44f, 0.44f, 0.44f, 1f),
-            SeparatorActive = new Vector4(0.26f, 0.59f, 0.98f, 1f),
+            // --- Muted Blue Accent for Separators ---
+            Separator = new Vector4(0.16f, 0.28f, 0.42f, 1f),
+            SeparatorHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            SeparatorActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            ResizeGrip = new Vector4(0.26f, 0.59f, 0.98f, 0.25f),
-            ResizeGripHovered = new Vector4(0.26f, 0.59f, 0.98f, 0.67f),
-            ResizeGripActive = new Vector4(0.26f, 0.59f, 0.98f, 0.95f),
+            // --- Muted Blue Accent for Resize Grips ---
+            ResizeGrip = new Vector4(0.16f, 0.28f, 0.42f, 0.25f),
+            ResizeGripHovered = new Vector4(0.22f, 0.40f, 0.60f, 0.67f),
+            ResizeGripActive = new Vector4(0.18f, 0.32f, 0.50f, 0.95f),
 
+            // --- Muted Blue Accent for Tabs ---
             Tab = new Vector4(0.18f, 0.18f, 0.19f, 1f),
-            TabHovered = new Vector4(0.26f, 0.59f, 0.98f, 1f),
-            TabSelected = new Vector4(0.20f, 0.20f, 0.21f, 1f),
-            TabSelectedOverline = new Vector4(0.26f, 0.59f, 0.98f, 1f),
+            TabHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
+            TabSelected = new Vector4(0.16f, 0.28f, 0.42f, 1f),
+            TabSelectedOverline = new Vector4(0.22f, 0.40f, 0.60f, 1f),
 
             TabDimmed = new Vector4(0.15f, 0.15f, 0.16f, 1f),
-            TabDimmedSelected = new Vector4(0.20f, 0.20f, 0.21f, 1f),
-            TabDimmedSelectedOverline = new Vector4(0.26f, 0.59f, 0.98f, 1f),
+            TabDimmedSelected = new Vector4(0.16f, 0.28f, 0.42f, 1f),
+            TabDimmedSelectedOverline = new Vector4(0.22f, 0.40f, 0.60f, 1f),
 
-            DockingPreview = new Vector4(0.26f, 0.59f, 0.98f, 0.70f),
+            // --- Muted Blue Accent for Docking Preview ---
+            DockingPreview = new Vector4(0.22f, 0.40f, 0.60f, 0.70f),
             DockingEmptyBackground = new Vector4(0.11f, 0.11f, 0.12f, 1f),
 
             PlotLines = new Vector4(0.61f, 0.61f, 0.61f, 1f),
@@ -78,13 +84,17 @@ public sealed class DefaultDarkTheme : ITheme
             TableRowBackground = new Vector4(0f, 0f, 0f, 0f),
             TableRowBackgroundAlt = new Vector4(1f, 1f, 1f, 0.06f),
 
-            TextSelectedBackground = new Vector4(0.26f, 0.59f, 0.98f, 0.35f),
+            // --- Muted Blue Accent for Text Selection ---
+            TextSelectedBackground = new Vector4(0.22f, 0.40f, 0.60f, 0.35f),
+
             DragDropTarget = new Vector4(1f, 1f, 0f, 0.9f),
 
-            NavWindowHighlight = new Vector4(0.26f, 0.59f, 0.98f, 1f),
+            // --- Muted Blue Accent for Nav Highlight ---
+            NavWindowHighlight = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             NavWindowDimBackground = new Vector4(0f, 0f, 0f, 0.20f),
             ModalWindowDimBackground = new Vector4(0f, 0f, 0f, 0.35f)
         },
+
         Metrics = new ThemeMetrics
         {
             DpiScale = 1f,
