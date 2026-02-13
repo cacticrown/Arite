@@ -29,6 +29,7 @@ public static class Theme
         ApplyMetrics(data.Metrics);
 
         Log.Info($"Applied theme: {theme.Name}");
+        Settings.Save();
     }
 
     private static void ApplyColors(ThemeColors colors)

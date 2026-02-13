@@ -20,6 +20,8 @@ public static class Settings
         {
             RecentProjects.RemoveAt(10);
         }
+
+        Save();
     }
 
     public static void Load()

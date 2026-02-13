@@ -6,7 +6,7 @@ namespace Arite.Data;
 public class Project
 {
     public string Path = null!;
-    public string Directory => System.IO.Path.GetDirectoryName(Path) ?? string.Empty;
+    public string Directory => System.IO.Path.GetDirectoryName(Path) ?? null;
 
     public List<Tileset> Tilesets = new List<Tileset>();
 

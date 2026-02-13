@@ -66,6 +66,10 @@ public class AriteEditor
         {
             GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
         }
+        else
+        {
+            GameRoot.Instance.Window.Title = "Arite";
+        }
     }
 
     public void Draw(GameTime gameTime)
@@ -132,6 +136,10 @@ public class AriteEditor
                 if (ImGui.MenuItem("Save"))
                 {
                     SaveProject();
+                }
+                if(ImGui.MenuItem("Close Project"))
+                {
+                    CloseProject();
                 }
                 ImGui.Separator();
                 if (ImGui.MenuItem("Restart"))
@@ -207,7 +215,13 @@ public class AriteEditor
         NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave(ProjectFileExtension);
         if (result.IsOk)
         {
-            Project = new Project();
+            if(Project == null)
+            {
+                Project = new Project();
+            }
+
+            Project.Reset();
+
             string filePath = result.Path;
 
             if (!Path.HasExtension(filePath))
@@ -218,6 +232,8 @@ public class AriteEditor
             Project.Path = filePath;
 
             SaveProject();
+
+            OnProjectLoaded();
         }
         else
         {
@@ -237,6 +253,8 @@ public class AriteEditor
 
             string filePath = result.Path;
             Project.Load(filePath);
+
+            OnProjectLoaded();
         }
     }
 
@@ -246,6 +264,23 @@ public class AriteEditor
         {
             Project.Save();
         }
+    }
+
+    public void CloseProject()
+    {
+        Project.Save();
+        Project = null!;
+        OnProjectUnloaded();
+    }
+
+    public void OnProjectLoaded()
+    {
+        GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
+    }
+
+    public void OnProjectUnloaded()
+    {
+        GameRoot.Instance.Window.Title = "Arite";
     }
 
     public void OnExit()
