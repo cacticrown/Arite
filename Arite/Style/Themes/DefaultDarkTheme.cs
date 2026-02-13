@@ -39,27 +39,22 @@ public sealed class DefaultDarkTheme : ITheme
             SliderGrab = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             SliderGrabActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            // --- Muted Blue Accent for Buttons ---
             Button = new Vector4(0.18f, 0.18f, 0.19f, 1f),
             ButtonHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             ButtonActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            // --- Muted Blue Accent for Selectable / Header ---
             Header = new Vector4(0.16f, 0.28f, 0.42f, 1f),
             HeaderHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             HeaderActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            // --- Muted Blue Accent for Separators ---
             Separator = new Vector4(0.16f, 0.28f, 0.42f, 1f),
             SeparatorHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             SeparatorActive = new Vector4(0.18f, 0.32f, 0.50f, 1f),
 
-            // --- Muted Blue Accent for Resize Grips ---
             ResizeGrip = new Vector4(0.16f, 0.28f, 0.42f, 0.25f),
             ResizeGripHovered = new Vector4(0.22f, 0.40f, 0.60f, 0.67f),
             ResizeGripActive = new Vector4(0.18f, 0.32f, 0.50f, 0.95f),
 
-            // --- Muted Blue Accent for Tabs ---
             Tab = new Vector4(0.18f, 0.18f, 0.19f, 1f),
             TabHovered = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             TabSelected = new Vector4(0.16f, 0.28f, 0.42f, 1f),
@@ -69,7 +64,6 @@ public sealed class DefaultDarkTheme : ITheme
             TabDimmedSelected = new Vector4(0.16f, 0.28f, 0.42f, 1f),
             TabDimmedSelectedOverline = new Vector4(0.22f, 0.40f, 0.60f, 1f),
 
-            // --- Muted Blue Accent for Docking Preview ---
             DockingPreview = new Vector4(0.22f, 0.40f, 0.60f, 0.70f),
             DockingEmptyBackground = new Vector4(0.11f, 0.11f, 0.12f, 1f),
 
@@ -84,12 +78,10 @@ public sealed class DefaultDarkTheme : ITheme
             TableRowBackground = new Vector4(0f, 0f, 0f, 0f),
             TableRowBackgroundAlt = new Vector4(1f, 1f, 1f, 0.06f),
 
-            // --- Muted Blue Accent for Text Selection ---
             TextSelectedBackground = new Vector4(0.22f, 0.40f, 0.60f, 0.35f),
 
             DragDropTarget = new Vector4(1f, 1f, 0f, 0.9f),
 
-            // --- Muted Blue Accent for Nav Highlight ---
             NavWindowHighlight = new Vector4(0.22f, 0.40f, 0.60f, 1f),
             NavWindowDimBackground = new Vector4(0f, 0f, 0f, 0.20f),
             ModalWindowDimBackground = new Vector4(0f, 0f, 0f, 0.35f)
