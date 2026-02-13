@@ -83,27 +83,11 @@ public class TilesetEditor : EditorWindow
                 ImGui.SameLine();
                 ImGui.InputText("##", ref tileset.ImagePath, 256);
 
-                if(tileset.ImagePath != oldImagePath)
-                {
-                    tileset.UnloadTexture();
-                }
 
                 ImGuiHelper.IntInput("Tile Width", ref tileset.TileWidth);
                 ImGuiHelper.IntInput("Tile Height", ref tileset.TileHeight);
                 ImGuiHelper.IntInput("Tile Separation X", ref tileset.TileSeperationX);
                 ImGuiHelper.IntInput("Tile Separation Y", ref tileset.TileSeperationY);
-				
-				ImGui.Text("Image Preview:");
-                var texture2D = tileset.Texture;
-				if(texture2D != null)
-				{
-					var texture = AriteEditor.Instance.ImguiRenderer.BindTexture(tileset.Texture);
-					ImGui.Image(texture, new System.Numerics.Vector2(tileset.Texture.Width, tileset.Texture.Height));
-				}
-				else
-				{
-					ImGui.Text("Texture not found.");
-				}
             }
             else
             {
