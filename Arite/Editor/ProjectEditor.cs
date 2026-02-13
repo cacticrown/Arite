@@ -15,25 +15,10 @@ public class ProjectEditor : EditorWindow
         float fullWidth = ImGui.GetContentRegionAvail().X;
         float buttonHeight = fullWidth / 6;
 
-        if (ImGui.Button("General", new System.Numerics.Vector2(fullWidth, buttonHeight)))
-        {
-            SelectedTab = SelectedProjectEditorTab.General;
-        }
-
-        if (ImGui.Button("Layers", new System.Numerics.Vector2(fullWidth, buttonHeight)))
-        {
-            SelectedTab = SelectedProjectEditorTab.Layers;
-        }
-
-        if (ImGui.Button("Tilesets", new System.Numerics.Vector2(fullWidth, buttonHeight)))
-        {
-            SelectedTab = SelectedProjectEditorTab.Tilesets;
-        }
-
-        if (ImGui.Button("Entities", new System.Numerics.Vector2(fullWidth, buttonHeight)))
-        {
-            SelectedTab = SelectedProjectEditorTab.Entities;
-        }
+        TabButton("General", SelectedProjectEditorTab.General, fullWidth, buttonHeight);
+        TabButton("Layers", SelectedProjectEditorTab.Layers, fullWidth, buttonHeight);
+        TabButton("Tilesets", SelectedProjectEditorTab.Tilesets, fullWidth, buttonHeight);
+        TabButton("Entities", SelectedProjectEditorTab.Entities, fullWidth, buttonHeight);
 
         ImGui.End();
 
@@ -45,6 +30,29 @@ public class ProjectEditor : EditorWindow
         }
 
         base.Draw(gameTime);
+    }
+
+    private void TabButton(string label, SelectedProjectEditorTab tab, float width, float height)
+    {
+        bool isActive = SelectedTab == tab;
+
+        if (isActive)
+        {   
+            var activeColor = ImGui.GetStyle().Colors[(int)ImGuiCol.ButtonActive];
+            ImGui.PushStyleColor(ImGuiCol.Button, activeColor);
+            ImGui.PushStyleColor(ImGuiCol.ButtonHovered, activeColor);
+            ImGui.PushStyleColor(ImGuiCol.ButtonActive, activeColor);
+        }
+
+        if (ImGui.Button(label, new System.Numerics.Vector2(width, height)))
+        {
+            SelectedTab = tab;
+        }
+
+        if (isActive)
+        {
+            ImGui.PopStyleColor(3);
+        }
     }
 }
 
