@@ -62,7 +62,7 @@ public class TilesetEditor : EditorWindow
 
             if (selectedTileset != null && AriteEditor.Instance.Project.TryGetTileset(selectedTileset, out var tileset))
             {
-                ImGui.InputText("Name", ref selectedTilesetNewName, 256);
+                ImGuiHelper.TextInput("Name", ref selectedTilesetNewName, 256);
 
                 if (!selectedTilesetNewName.IsWhiteSpace() && selectedTilesetNewName != selectedTileset && !AriteEditor.Instance.Project.ContainsTileset(selectedTilesetNewName))
                 {

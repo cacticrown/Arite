@@ -6,6 +6,7 @@ public static class ImGuiHelper
 {
     public static void TextInput(string label, ref string text, nuint maxLength = 256)
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text(label);
         ImGui.SameLine();
         ImGui.PushID(label);
@@ -15,6 +16,7 @@ public static class ImGuiHelper
 
     public static void IntInput(string label, ref int number)
     {
+        ImGui.AlignTextToFramePadding();
         ImGui.Text(label);
         ImGui.SameLine();
         ImGui.PushID(label);
