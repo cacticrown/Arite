@@ -5,7 +5,8 @@ namespace Arite;
 
 public abstract class EditorWindow
 {
-    public ImGuiWindowFlags DefaultWindowFlags = ImGuiWindowFlags.NoCollapse;
+    public ImGuiWindowFlags DefaultWindowFlags = ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoTitleBar
+    | ImGuiWindowFlags.NoMove;
 
     public virtual void Load()
     {
