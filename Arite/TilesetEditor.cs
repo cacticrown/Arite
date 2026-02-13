@@ -11,10 +11,6 @@ public class TilesetEditor : EditorWindow
     private string? selectedTileset;
     private string selectedTilesetNewName = "";
 
-    public TilesetEditor() : base("Tileset Editor")
-    {
-    }
-
     public override void Draw(GameTime gameTime)
     {
         if (AriteEditor.Instance.Project == null)
@@ -23,7 +19,7 @@ public class TilesetEditor : EditorWindow
             return;
         }
 
-        ImGui.Begin("Tilesets");
+        ImGui.Begin("Tilesets", DefaultWindowFlags);
 
         if (ImGui.Button("Add Tileset"))
         {

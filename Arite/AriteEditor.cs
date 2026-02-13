@@ -1,4 +1,5 @@
 using Arite.Data;
+using Arite.Editor;
 using Arite.Graphics;
 using Arite.Style;
 using Arite.Style.Themes;
@@ -21,7 +22,7 @@ public class AriteEditor
 
     public Project Project { get; private set; } = null!;
 
-    public List<EditorWindow> EditorWindows = new List<EditorWindow>();
+    public ProjectEditor ProjectEditor = new ProjectEditor();
 
     public ImGuiRenderer ImguiRenderer = null!;
 
@@ -44,12 +45,7 @@ public class AriteEditor
             io.FontDefault = io.Fonts.AddFontFromFileTTF(DefaultFontPath, 16);
         }
 
-        EditorWindows.Add(new TilesetEditor());
-
-        foreach(var editorWindow in EditorWindows)
-        {
-            editorWindow.Load();
-        }
+        ProjectEditor.Load();
 
         Settings.Load();
         if(Settings.RecentProjects.Count > 0)
@@ -74,15 +70,9 @@ public class AriteEditor
 
     public void Update(GameTime gameTime)
     {
-        foreach(var editorWindow in EditorWindows)
-        {
-            if(editorWindow.Visible)
-            {
-                editorWindow.Update(gameTime);
-            }
-        }
+        ProjectEditor.Update(gameTime);
 
-        if(Project != null)
+        if (Project != null)
         {
             GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
         }
@@ -112,13 +102,7 @@ public class AriteEditor
         uint dockspaceId = ImGui.GetID("MyDockSpace");
         ImGui.DockSpace(dockspaceId, System.Numerics.Vector2.Zero, dockspaceFlags);
 
-        foreach(var editorWindow in EditorWindows)
-        {
-            if(editorWindow.Visible)
-            {
-                editorWindow.Draw(gameTime);
-            }
-        }
+        ProjectEditor.Draw(gameTime);
 
         ImGui.End();
 

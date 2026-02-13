@@ -5,13 +5,7 @@ namespace Arite;
 
 public abstract class EditorWindow
 {
-    public string Title { get; }
-    public bool Visible { get; set; } = true;
-
-    protected EditorWindow(string title)
-    {
-        Title = title;
-    }
+    public ImGuiWindowFlags DefaultWindowFlags = ImGuiWindowFlags.NoCollapse;
 
     public virtual void Load()
     {
@@ -20,11 +14,11 @@ public abstract class EditorWindow
 
     public virtual void Update(GameTime gameTime)
     {
-        
+
     }
 
     public virtual void Draw(GameTime gameTime)
     {
-        
+
     }
 }
