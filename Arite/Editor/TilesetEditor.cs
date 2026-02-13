@@ -15,24 +15,34 @@ public class TilesetEditor : EditorWindow
     {
         ImGui.Begin("Tilesets", DefaultWindowFlags);
 
-        if (ImGui.Button("Add Tileset"))
-        {
-            newTilesetName = "";
-            ImGui.OpenPopup("Add Tileset");
-            focusNameField = true;
-        }
-
-        DrawAddTilesetPopup();
-
-        ImGui.Separator();
-
         float height = ImGui.GetContentRegionAvail().Y;
 
-        if (ImGui.BeginTable("TilesetSplit", 2, ImGuiTableFlags.Resizable | ImGuiTableFlags.BordersInnerV | ImGuiTableFlags.SizingStretchSame, new System.Numerics.Vector2(0, height)))
+        if (ImGui.BeginTable("TilesetSplit", 2, ImGuiTableFlags.BordersInnerV, new System.Numerics.Vector2(0, height)))
         {
+            float listWidth = 150f;
+
+            ImGui.TableSetupColumn("List", ImGuiTableColumnFlags.WidthFixed, listWidth);
+
+            ImGui.TableSetupColumn("Inspector", ImGuiTableColumnFlags.WidthStretch);
+
+
             ImGui.TableNextColumn();
 
-            ImGui.BeginChild("TilesetList", new System.Numerics.Vector2(0, 0));
+            ImGui.BeginChild("TilesetList", new System.Numerics.Vector2(listWidth, 0));
+
+            float fullWidth = ImGui.GetContentRegionAvail().X;
+            float buttonHeight = fullWidth / 4;
+            if (ImGui.Button("Add Tileset", new System.Numerics.Vector2(fullWidth, buttonHeight)))
+            {
+                newTilesetName = "";
+                ImGui.OpenPopup("Add Tileset");
+                focusNameField = true;
+            }
+
+            ImGui.Dummy(new System.Numerics.Vector2(0, 5));
+            ImGui.Separator();
+
+            DrawAddTilesetPopup();
 
             foreach (var _tileset in AriteEditor.Instance.Project.Tilesets)
             {
