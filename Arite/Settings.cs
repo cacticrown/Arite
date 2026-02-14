@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Arite.Style;
 using Arite.Style.Themes;
+using Hexa.NET.ImGui;
 
 namespace Arite;
 
@@ -70,6 +71,8 @@ public static class Settings
                 Theme.Apply(new DefaultLightTheme());
                 break;
         }
+
+        ImGui.LoadIniSettingsFromDisk("imgui.ini");
     }
 
     public static void Save()

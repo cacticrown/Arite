@@ -287,5 +287,6 @@ public class AriteEditor
     {
         SaveProject();
         Settings.Save();
+        ImGui.SaveIniSettingsToDisk("imgui.ini");
     }
 }
