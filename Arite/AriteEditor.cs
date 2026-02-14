@@ -166,16 +166,6 @@ public class AriteEditor : Game
                 if (ImGui.MenuItem("Restart"))
                 {
                     Process.Start(Environment.ProcessPath);
-                ImGui.EndMenu();
-            }
-
-            if (ImGui.BeginMenu("Edit"))
-            {
-                if(ImGui.MenuItem("Undo", "Ctrl+Z"))
-                {
-                    Log.Error("Undo is not implemented yet!");
-                }
-                if(ImGui.MenuItem("Redo", "Ctrl+Y"))
                     Exit();
                 }
                 if (ImGui.MenuItem("Exit"))
