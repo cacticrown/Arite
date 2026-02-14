@@ -68,8 +68,7 @@ public class AriteEditor : Game
         if(Settings.RecentProjects.Count > 0)
         {
             string recentProject = Settings.RecentProjects[0];
-            Project = new Project();
-            Project.Load(recentProject);
+            LoadProject(recentProject);
         }
 
         base.LoadContent();
@@ -144,11 +143,7 @@ public class AriteEditor : Game
                     {
                         if(ImGui.MenuItem(recentProject))
                         {
-                            if(Project is null)
-                            {
-                                Project = new Project();
-                            }
-                            Project.Load(recentProject);
+                            LoadProject(recentProject);
                             break;
                         }
                     }
@@ -236,12 +231,8 @@ public class AriteEditor : Game
         NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileSave(ProjectFileExtension);
         if (result.IsOk)
         {
-            if(Project == null)
-            {
-                Project = new Project();
-            }
-
-            Project.Reset();
+            CloseProject();
+            Project = new Project();
 
             string filePath = result.Path;
 
@@ -267,16 +258,25 @@ public class AriteEditor : Game
         NativeFileDialogSharp.DialogResult result = NativeFileDialogSharp.Dialog.FileOpen(ProjectFileExtension);
         if (result.IsOk)
         {
-            if(Project is null)
-            {
-                Project = new Project();
-            }
+            CloseProject();
 
             string filePath = result.Path;
-            Project.Load(filePath);
+            Project = Project.Load(filePath);
+
+            if(Project == null)
+            {
+                return;
+            }
 
             OnProjectLoaded();
         }
+    }
+
+    public void LoadProject(string path)
+    {
+        CloseProject();
+        Project = Project.Load(path);
+        OnProjectLoaded();
     }
 
     public void SaveProject()
@@ -289,6 +289,11 @@ public class AriteEditor : Game
 
     public void CloseProject()
     {
+        if(Project == null)
+        {
+            return;
+        }
+
         Project.Save();
         Project = null!;
         OnProjectUnloaded();
@@ -296,6 +301,11 @@ public class AriteEditor : Game
 
     public void OnProjectLoaded()
     {
+        if(Project == null)
+        {
+            OnProjectUnloaded();
+        }
+
         Window.Title = $"Arite - {Project.Path}";
     }
 

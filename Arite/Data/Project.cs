@@ -38,13 +38,13 @@ public class Project
         return false;
     }
 
-    public void Load(string path)
+    public static Project Load(string path)
     {
         try
         {
-            Reset();
+            Project project = new Project();
 
-            Path = path;
+            project.Path = path;
 
             JsonDocument jsonDocument = JsonDocument.Parse(File.ReadAllText(path));
             JsonElement jsonRoot = jsonDocument.RootElement;
@@ -65,7 +65,7 @@ public class Project
                 int tileSeperationX = jsonTileset.GetProperty("TileSeperationX").GetInt32();
                 int tileSeperationY = jsonTileset.GetProperty("TileSeperationY").GetInt32();
 
-                Tilesets.Add(new Tileset
+                project.Tilesets.Add(new Tileset
                 {
                     Name = name,
                     ImagePath = imagePath,
@@ -76,14 +76,18 @@ public class Project
                 });
             }
 
-            Settings.AddRecentProject(Path);
+            Settings.AddRecentProject(project.Path);
 
             Log.Info($"Loaded project from {path}");
+
+            return project;
         }
         catch (Exception ex)
         {
             Log.Error($"Failed to load project from {path}: {ex.Message}");
         }
+
+        return null;
     }
 
     public void Save()
@@ -124,11 +128,5 @@ public class Project
         {
             Log.Error($"Failed to save project to {Path}: {ex.Message}");
         }
-    }
-
-    public void Reset()
-    {
-        Path = null!;
-        Tilesets.Clear();
     }
 }
