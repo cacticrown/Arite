@@ -1,23 +1,23 @@
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Hexa.NET.ImGui;
+using Arite.Editor;
 using Arite.Data;
 using Arite.Graphics;
 using Arite.Style;
 using Arite.Style.Themes;
-using Hexa.NET.ImGui;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
-namespace Arite.Editor;
+namespace Arite;
 
-public class AriteEditor
+public class AriteEditor : Game
 {
     public static AriteEditor Instance { get; private set; } = null!;
+
     public static string Version => "0.1.0";
 
     public const string DefaultFontPath = "Assets/Fonts/Inter-VariableFont_opsz,wght.ttf";
     public const string ProjectFileExtension = "ariteproj";
-
-    public static SpriteBatch SpriteBatch => GameRoot.Instance.SpriteBatch;
 
     /// <summary>
     /// Null means that no project is currently open
@@ -28,14 +28,30 @@ public class AriteEditor
 
     public ImGuiRenderer ImguiRenderer = null!;
 
+    private GraphicsDeviceManager _graphics;
+    public SpriteBatch SpriteBatch = null!;
+
+
     public AriteEditor()
     {
         Instance = this;
+
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+        IsMouseVisible = true;
+        Window.AllowUserResizing = true;
     }
 
-    public void Load()
+    protected override void Initialize()
     {
-        ImguiRenderer = new ImGuiRenderer(GameRoot.Instance);
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
+
+        base.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+        ImguiRenderer = new ImGuiRenderer(this);
 
         var io = ImGui.GetIO();
         io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
@@ -56,24 +72,21 @@ public class AriteEditor
             Project = new Project();
             Project.Load(recentProject);
         }
+
+        base.LoadContent();
     }
 
-    public void Update(GameTime gameTime)
+    protected override void Update(GameTime gameTime)
     {
         ProjectEditor.Update(gameTime);
 
-        if (Project != null)
-        {
-            GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
-        }
-        else
-        {
-            GameRoot.Instance.Window.Title = "Arite";
-        }
+        base.Update(gameTime);
     }
 
-    public void Draw(GameTime gameTime)
+    protected override void Draw(GameTime gameTime)
     {
+        GraphicsDevice.Clear(Color.DarkGray);
+
         ImguiRenderer.BeforeLayout(gameTime);
 
         DrawMenuBar();
@@ -101,6 +114,15 @@ public class AriteEditor
         ImGui.End();
 
         ImguiRenderer.AfterLayout();
+
+        base.Draw(gameTime);
+    }
+
+    protected override void OnExiting(object sender, ExitingEventArgs args)
+    {
+        SaveProject();
+        Settings.Save();
+        ImGui.SaveIniSettingsToDisk("imgui.ini");
     }
 
     public void DrawMenuBar()
@@ -145,11 +167,21 @@ public class AriteEditor
                 if (ImGui.MenuItem("Restart"))
                 {
                     Process.Start(Environment.ProcessPath);
-                    GameRoot.Instance.Exit();
+                ImGui.EndMenu();
+            }
+
+            if (ImGui.BeginMenu("Edit"))
+            {
+                if(ImGui.MenuItem("Undo", "Ctrl+Z"))
+                {
+                    Log.Error("Undo is not implemented yet!");
+                }
+                if(ImGui.MenuItem("Redo", "Ctrl+Y"))
+                    Exit();
                 }
                 if (ImGui.MenuItem("Exit"))
                 {
-                    GameRoot.Instance.Exit();
+                    Exit();
                 }
                 ImGui.EndMenu();
             }
@@ -275,18 +307,11 @@ public class AriteEditor
 
     public void OnProjectLoaded()
     {
-        GameRoot.Instance.Window.Title = $"Arite - {Project.Path}";
+        Window.Title = $"Arite - {Project.Path}";
     }
 
     public void OnProjectUnloaded()
     {
-        GameRoot.Instance.Window.Title = "Arite";
-    }
-
-    public void OnExit()
-    {
-        SaveProject();
-        Settings.Save();
-        ImGui.SaveIniSettingsToDisk("imgui.ini");
+        Window.Title = "Arite";
     }
 }

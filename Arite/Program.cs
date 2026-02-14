@@ -1,4 +1,4 @@
 ﻿using Arite;
 
-using GameRoot game = new GameRoot();
+using AriteEditor game = new AriteEditor();
 game.Run();
