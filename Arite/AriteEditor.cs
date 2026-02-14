@@ -31,7 +31,6 @@ public class AriteEditor : Game
     private GraphicsDeviceManager _graphics;
     public SpriteBatch SpriteBatch = null!;
 
-
     public AriteEditor()
     {
         Instance = this;
